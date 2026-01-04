@@ -620,7 +620,7 @@ try:
     st.header("⚠️ At-Risk Students Analysis")
 
     class_levels = sorted(student_avg['class_level'].unique())
-    tabs = st.tabs([f"Grade {cl.replace('C', '')}" for cl in class_levels])
+    tabs = st.tabs([f"C {cl.replace('C', '')}" for cl in class_levels])
 
     for idx, cl in enumerate(class_levels):
         with tabs[idx]:
@@ -629,7 +629,7 @@ try:
                 (student_avg['at_risk'] == True)
                 ].sort_values('spi_score')
 
-            st.markdown(f"### Grade {cl.replace('C', '')} ({len(at_risk_students)} at risk)")
+            st.markdown(f"### C {cl.replace('C', '')} ({len(at_risk_students)} at risk)")
 
             if len(at_risk_students) > 0:
                 st.markdown("**Students classified as AT RISK or CRITICAL based on Student Performance Index (SPI):**")
@@ -668,7 +668,7 @@ try:
                             st.markdown(
                                 f"- Declining performance trend ({spi_details['performance_trend']:.1f} point drop)")
             else:
-                st.success(f"No at-risk students in Grade {cl.replace('C', '')}")
+                st.success(f"No at-risk students in C {cl.replace('C', '')}")
 
     st.markdown("---")
 
@@ -956,4 +956,5 @@ except FileNotFoundError:
         "⚠️ Error: 'Students_Dataset.csv' not found. Please ensure the file is in the same directory as this script.")
 except Exception as e:
     st.error(f"⚠️ An error occurred: {str(e)}")
+
     st.info("Please check that your CSV file is properly formatted and contains the required columns.")
